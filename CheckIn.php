@@ -17,6 +17,8 @@ table, .table {
     color: #fff;
 }
 </style>
+
+<!-- {Input forms} -->
 <div class="container">	
 	<div class="row">
 		<h2>Check In</h2>		
@@ -25,6 +27,28 @@ table, .table {
                 <label for="SO#">Service Order #</label>
                 <input type="text" class="form-control" name="SO" aria-describedby="soHelp" placeholder="Enter SO#">
             </div>
+            
+                <div class="form-group">
+                <label for='PartType'>Part Type:</label>
+                <select class="form-control" name='PartType'>
+                    <option selected>Choose Part Type</option>
+                    <option value="1">RAM</option>
+                    <option value="2">Motherboard</option>
+                    <option value="3">Case</option>
+                    <option value="4">PSU</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for='Issue'>Issue:</label>
+                <select class="form-control" name='Issue'>
+                    <option selected>Choose Issue</option>
+                    <option value="1">Not working</option>
+                    <option value="2">No power</option>
+                    <option value="3">Physical Damage</option>
+                    <option value="4">Crashing</option>
+                </select>
+                </div>
+            
             <div class="form-group">
                 <label for="SKU">SKU #</label>
                 <input type="text" class="form-control" name="SKU" placeholder="SKU#">
@@ -44,6 +68,7 @@ table, .table {
             <button type="submit" class="btn btn-primary">Check In</button>
         </form>	
         
+        <!-- {Removing a unit from current inventory table and moving to repaired table} -->
         <h2>Check Out</h2>
         <form action="inc/DropQuery.php" method="POST">   
             <div class="form-group">
@@ -53,9 +78,9 @@ table, .table {
             <button type="submit" class="btn btn-primary">Check Out</button>
         </form>
         
-
-
         <br>
+        
+        <!-- {Displaying newest entries to check inputs} -->
         <?php
 		include_once("inc/dbhandler.php");
 		$sqlQuery = "SELECT * from rack_1 ORDER BY id desc LIMIT 10;";
@@ -69,7 +94,9 @@ table, .table {
 					<th>SKU</th>
 					<th>Item Notes</th>	
                     <th>Cart</th>
-                    <th>Date Ordered</th>												
+                    <th>Date Ordered</th>
+                    <th>Part Type</th>
+                    <th>Issue</th>												
 				</tr>
 			</thead>
 			<tbody>
@@ -79,7 +106,9 @@ table, .table {
 				   <td><?php echo $developer ['SKU']; ?></td>
 				   <td><?php echo $developer ['Model']; ?></td>  
                    <td><?php echo $developer ['Cart']; ?></td>
-                   <td><?php echo $developer ['DateOrdered']; ?></td>				   				   				  
+                   <td><?php echo $developer ['DateOrdered']; ?></td>
+                   <td><?php echo $developer ['PartType']; ?></td>
+                   <td><?php echo $developer ['Issue']; ?></td>				   				   				  
 				   </tr>
 				<?php } ?>
 			</tbody>
