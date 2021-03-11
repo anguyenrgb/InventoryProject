@@ -21,6 +21,7 @@ table, .table {
 	<div class="row">
 		<h2>AWP Inventory</h2>		
 		
+		<!-- {Looking up a Unit} -->
 		<form action="inc/SOquery.php" method="POST">   
             <div class="form-group">
                 <label for="Lookup">Lookup Unit</label>
@@ -29,7 +30,7 @@ table, .table {
             <button type="submit" class="btn btn-primary">Lookup</button>
         </form>
 		<br>
-
+		
 		<?php
 		include_once("inc/dbhandler.php");
 		$sqlQuery = "SELECT COUNT(*) from rack_1;";
@@ -48,6 +49,8 @@ table, .table {
 			<?php } ?>
 			</tbody>
 		</table>
+		
+		<!-- {Displaying Curent Inventory} -->
 		<?php
 		include_once("inc/dbhandler.php");
 		$sqlQuery = "SELECT * from rack_1 ORDER BY id desc;";
@@ -61,7 +64,9 @@ table, .table {
 					<th>SKU</th>
 					<th>Item Notes</th>
 					<th>Cart</th>
-					<th>DateOrdered</th>													
+					<th>DateOrdered</th>
+					<th>PartType</th>
+					<th>Issue</th>													
 				</tr>
 			</thead>
 			<tbody>
@@ -72,7 +77,9 @@ table, .table {
 				   <td><?php echo $developer ['SKU']; ?></td>
 				   <td><?php echo $developer ['Model']; ?></td>
 				   <td><?php echo $developer ['Cart']; ?></td>
-				   <td><?php echo $developer ['DateOrdered']; ?></td>  				   				   				  
+				   <td><?php echo $developer ['DateOrdered']; ?></td>
+				   <td><?php echo $developer ['PartType']; ?></td>
+				   <td><?php echo $developer ['Issue']; ?></td>  				   				   				  
 				   </tr>
 				<?php } ?>
 			</tbody>
